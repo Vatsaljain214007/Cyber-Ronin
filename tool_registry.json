@@ -1,0 +1,67 @@
+{
+  "tools": [
+    {
+      "name": "network_scan",
+      "description": "Scan a target host for open ports using Nmap. Returns structured results including open ports and service names.",
+      "sensitive": true,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "description": "Target hostname or IP address to scan (e.g., '192.168.1.1' or 'example.com')"
+          },
+          "ports": {
+            "type": "string",
+            "description": "Port specification for Nmap (e.g., 'top-1000', '1-1000', '80,443,8080')",
+            "default": "top-1000"
+          }
+        },
+        "required": ["target"]
+      }
+    },
+    {
+      "name": "check_auth_log",
+      "description": "Parse authentication log file for failed login attempts within a lookback window.",
+      "sensitive": false,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "log_path": {
+            "type": "string",
+            "description": "Path to the authentication log file (e.g., '/var/log/auth.log' or 'C:\\\\Windows\\\\System32\\\\winevt\\\\Logs\\\\Security.evtx')"
+          },
+          "lookback_hours": {
+            "type": "integer",
+            "description": "Hours to look back for failed login attempts",
+            "default": 24
+          }
+        },
+        "required": ["log_path"]
+      }
+    },
+    {
+      "name": "system_health",
+      "description": "Get system health metrics including CPU usage, memory usage, and top processes by resource consumption.",
+      "sensitive": false,
+      "parameters": {
+        "type": "object",
+        "properties": {}
+      }
+    },
+    {
+      "name": "list_processes",
+      "description": "List running processes, optionally filtered by name.",
+      "sensitive": false,
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "filter": {
+            "type": "string",
+            "description": "Optional process name filter (case-insensitive substring match)"
+          }
+        }
+      }
+    }
+  ]
+}
